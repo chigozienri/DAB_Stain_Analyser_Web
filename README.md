@@ -1,10 +1,5 @@
-## Getting started with Next.js and Replicate
-
-This branch uses Typescript, Tailwind and the Next.js App Router
-
-This is a [Next.js](https://nextjs.org/) template project that's preconfigured to work with Replicate's API.
-
-You can use this as a quick jumping-off point to build a web app using Replicate's API, or you can recreate this codebase from scratch by following the guide at [replicate.com/docs/get-started/nextjs](https://replicate.com/docs/get-started/nextjs)
+# DAB Stain Analyser Web UI
+This is a Next.js webapp that provides a UI for https://replicate.com/chigozienri/dab_stain_analyser
 
 ## Noteworthy files
 
@@ -16,8 +11,8 @@ You can use this as a quick jumping-off point to build a web app using Replicate
 
 Get a copy of this repo:
 ```console
-npx create-next-app --example https://github.com/replicate/getting-started-nextjs-typescript your-project-name
-cd your-project-name
+git clone https://github.com/chigozienri/DAB_Stain_Analyser_Web
+cd DAB_Stain_Analyser_Web
 ```
 
 Install dependencies:
@@ -40,6 +35,11 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-For detailed instructions on how to create and use this template, see [replicate.com/docs/get-started/nextjs](https://replicate.com/docs/get-started/nextjs)
+## Deployment
 
-<img width="698" alt="iguana" src="https://github.com/replicate/getting-started-nextjs-typescript/assets/14337872/f40cf84f-f309-44d5-8429-9a1cda911d6d">
+```console
+npm run build
+npm run start
+```
+
+or see https://nextjs.org/docs/pages/building-your-application/deploying for other options including Docker

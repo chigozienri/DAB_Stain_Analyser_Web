@@ -14,12 +14,22 @@ export async function POST(req: Request) {
   }
 
   const prediction = await replicate.predictions.create({
-    // Pinned to a specific version of Stable Diffusion
-    // See https://replicate.com/stability-ai/sdxl
-    version: "8beff3369e81422112d93b89ca01426147de542cd4684c244b673b105188fe5f",
+    // Pinned version of https://replicate.com/chigozienri/dab_stain_analyser
+    version: "f04dcea96d3a9ae0be7c706327c72078eef168d7a070f9cb9ef7189aa01bdb9a",
 
-    // This is the text prompt that will be submitted by a form on the frontend
-    input: { prompt: data.get("prompt") },
+    // The inputs that will be submitted by a form on the frontend
+    input: {
+      // Send image as base64 URL
+      image: data.get('image') ? await (data.get('image') as File).arrayBuffer().then(buffer => 'data:image/jpeg;base64,' + Buffer.from(buffer).toString('base64')) : 'https://replicate.delivery/pbxt/K1320zMQQgRHzlFxpPHkZr1dOwKU3tUvx9MmCZyElq5qdGeR/Example_Image.tif',
+      asyn_LMean: data.get('asyn_LMean') ? parseFloat(data.get('asyn_LMean') as string) : 38.35,
+      asyn_aMean: data.get('asyn_aMean') ? parseFloat(data.get('asyn_aMean') as string) : 27.75,
+      asyn_bMean: data.get('asyn_bMean') ? parseFloat(data.get('asyn_bMean') as string) : 24.9,
+      asyn_thres: data.get('asyn_thres') ? parseFloat(data.get('asyn_thres') as string) : 15,
+      cell_LMean: data.get('cell_LMean') ? parseFloat(data.get('cell_LMean') as string) : 75.4,
+      cell_aMean: data.get('cell_aMean') ? parseFloat(data.get('cell_aMean') as string) : 5.5,
+      cell_bMean: data.get('cell_bMean') ? parseFloat(data.get('cell_bMean') as string) : -3.4,
+      cell_thres: data.get('cell_thres') ? parseFloat(data.get('cell_thres') as string) : 6,
+    }
   });
 
   if (prediction?.error) {
